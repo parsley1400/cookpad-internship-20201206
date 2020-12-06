@@ -27,5 +27,14 @@ RSpec.describe Poll do
         expect { poll.add_vote(vote) }.to raise_error Poll::InvalidCandidateError
       end
     end
+
+    context 'with a vote that has an existing voter' do
+      it 'raises ExistingVoterError' do
+        poll = Poll.new('Awesome Poll', ['Alice', 'Bob'], '20201231')
+        vote = Vote.new('INVALID', 'Alice')
+
+        expect { poll.add_vote(vote) }.to raise_error Poll::ExistingVoterError
+      end
+    end
   end
 end

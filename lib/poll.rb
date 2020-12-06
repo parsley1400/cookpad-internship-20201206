@@ -1,8 +1,9 @@
 class Poll
-  attr_reader :title, :candidates
+  attr_reader :title, :candidates, :deadline
 
-  def initialize(title, candidates)
+  def initialize(title, candidates, deadline)
     @title = title
     @candidates = candidates
+    @deadline = deadline
   end
 end

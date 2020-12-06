@@ -25,4 +25,35 @@ class Poll
 
     @votes.push(vote)
   end
+
+  def count_votes
+    # alice = 0
+    # bob = 0
+    # @votes.each do |vote|
+    #   if vote.candidate == 'Alice'
+    #     alice += 1
+    #   end
+    #   if vote.candidate == 'Bob'
+    #     bob += 1
+    #   end
+    # end
+
+    # {
+    #   'Alice' => alice,
+    #   'Bob' => bob
+    # }
+
+    result = {}
+
+    candidates.each do |candidate|
+      result[candidate] = 0
+    end
+
+    votes.each do |vote|
+      result[vote.candidate] += 1
+    end
+
+    result.sort_by{|_key, value| value }.reverse.to_h
+
+  end
 end

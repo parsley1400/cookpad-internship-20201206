@@ -19,8 +19,10 @@ class Poll
       raise InvalidCandidateError
     end
 
-    if vote.voter == 'INVALID'
-      raise ExistingVoterError
+    @votes.each do |v|
+      if v.voter == vote.voter
+        raise ExistingVoterError
+      end
     end
 
     @votes.push(vote)

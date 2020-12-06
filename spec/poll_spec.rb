@@ -8,4 +8,15 @@ RSpec.describe Poll do
     expect(poll.candidates).to eq ['Alice', 'Bob']
     expect(poll.deadline).to eq '20201231'
   end
+
+  describe '#add_vote' do
+    it 'saves the given vote' do
+      poll = Poll.new('Awesome Poll', ['Alice', 'Bob'], '20201231')
+      vote = Vote.new('Miyoshi', 'Alice')
+
+      poll.add_vote(vote)
+
+      expect(poll.votes).to eq [vote]
+    end
+  end
 end

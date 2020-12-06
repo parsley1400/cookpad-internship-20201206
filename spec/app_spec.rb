@@ -17,6 +17,30 @@ RSpec.describe 'PollApp' do
     end
   end
 
+  describe 'GET /polls/:id/result' do
+    let(:poll) { Poll.new('Example Poll', ['Alice', 'Bob'], 'Example date') }
+
+    before do
+      $polls = [poll]
+    end
+
+    context 'with valid id' do
+      it 'responds 200 OK' do
+        get '/polls/0/result'
+
+        expect(last_response.status).to eq 200
+      end
+    end
+
+    context 'with invalid id' do
+      it 'responds 404 Not Found' do
+        get '/polls/1/result'
+
+        expect(last_response.status).to eq 404
+      end
+    end
+  end
+
   describe 'GET /polls/:id' do
     let(:poll) { Poll.new('Example Poll', ['Alice', 'Bob'], 'Example date') }
 
@@ -41,8 +65,8 @@ RSpec.describe 'PollApp' do
     end
   end
 
-  xdescribe 'POST /polls/:id/votes' do
-    let(:poll) { Poll.new('Example Poll', ['Alice', 'Bob']) }
+  describe 'POST /polls/:id/votes' do
+    let(:poll) { Poll.new('Example Poll', ['Alice', 'Bob'], '20201231') }
 
     before do
       $polls = [poll]

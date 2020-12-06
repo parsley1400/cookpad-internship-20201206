@@ -1,0 +1,18 @@
+<h1><%= poll.title %></h1>
+
+<table border="1" width="300" height="200">
+  <tr align="center">
+    <th>候補</th>
+    <th>投票数</th>
+  </tr>
+<% poll.count_votes.each do |key, value|%>
+  <tr align="center">
+    <td><%= key %></td>
+    <td><%= value %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <a href="/polls/<%= index %>">戻る</a>
+</p>
